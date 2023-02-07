@@ -1,0 +1,51 @@
+Q 1) ans :
+
+
+file_info() {
+  
+  for file in "$@"; do
+   
+    if [ -f "$file" ]; then
+      echo "$file is a regular file."
+    elif [ -d "$file" ]; then
+      echo "$file is a directory."
+    else
+      echo "$file is another type of file."
+    fi
+    
+    echo "Listing of $file:"
+    ls -l "$file"
+    echo
+  done
+}
+
+file_count() {
+  
+  local count=$(ls | wc -l)
+  echo "There are $count files in the current directory."
+}
+
+file_info "$@"
+
+
+file_count
+
+
+Q 2) ans : find / -name myfile.txt
+
+Q3) ans :   if [ $# -ne 1 ]; then
+      echo "Usage: $0 <directory>"
+     exit 1
+    fi
+
+  directory=$1
+
+   if [ ! -d "$directory" ]; then
+   echo "$directory is not a directory"
+    exit 1
+  fi
+
+   chmod o-rwx,g-rwx $directory/*
+
+
+   chmod u+rwx $directory/*
